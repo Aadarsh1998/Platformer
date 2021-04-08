@@ -87,7 +87,7 @@ public class Movement : MonoBehaviour
         }
         if(collision.gameObject.tag == "Enemy")
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(2);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -97,7 +97,7 @@ public class Movement : MonoBehaviour
         coin--;
         if(coin == 0)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(2);
         }
 
     }

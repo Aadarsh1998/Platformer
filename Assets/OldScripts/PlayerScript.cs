@@ -12,6 +12,7 @@ public class PlayerScript : MonoBehaviour
     public float jumpVelocity;
     bool isPlayerGrounded = false;
     Animator anim;
+    public int coin = 10;
     //GameObject gameObject;
 
     private void Awake()
@@ -32,6 +33,17 @@ public class PlayerScript : MonoBehaviour
             Invoke("RepeatLevel", 0.8f);
         }
     }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if(collision.gameObject.tag == "Coin")
+    //    {
+    //        coin--;
+    //    }
+    //    if(coin == 0)
+    //    {
+    //        SceneManager.LoadScene(0);
+    //    }
+    //}
     //private void OnTriggerEnter2D(Collider2D collision)
     //{
     //    Destroy(collision.gameObject);

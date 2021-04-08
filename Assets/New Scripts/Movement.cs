@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Movement : MonoBehaviour
     SpriteRenderer sprite;
     [SerializeField] private LayerMask FloorlayerMask;
     public float jumpVelocity;
+    public int coin = 10;
     private void Awake()
     {
         {
@@ -44,7 +46,7 @@ public class Movement : MonoBehaviour
     }
     private void PlayerMovement()
     {
-        float movespeed = 10f;
+        float movespeed = 5f;
         if(Input.GetKey(KeyCode.LeftArrow))
         {
             print("Left Arrow");
@@ -69,7 +71,10 @@ public class Movement : MonoBehaviour
     }
     private bool Isgrounded()
     {
-         RaycastHit2D raycastHit2D= Physics2D.BoxCast(boxCollider2D.bounds.center, boxCollider2D.bounds.size, 0f, Vector2.down , .1f,FloorlayerMask);
+        RaycastHit2D raycastHit2D = Physics2D.BoxCast(boxCollider2D.bounds.center, boxCollider2D.bounds.size, 0f, Vector2.down, .1f, FloorlayerMask);
+        //BoxCast(boxCollider2D.bounds.center, boxCollider2D.bounds.size, 0f, Vector2.down, .1f, FloorlayerMask);
+        //CapsuleCast(Vector2.down, Vector2., CapsuleDirection2D.Vertical, 0, Vector2.down);
+
         //if (raycastHit2D.collider != null);
         return raycastHit2D.collider != null;
 
@@ -80,5 +85,20 @@ public class Movement : MonoBehaviour
         {
             anim.SetInteger("State", 0);
         }
+        if(collision.gameObject.tag == "Enemy")
+        {
+            SceneManager.LoadScene(0);
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        ScoreTextScript.coinAmount += 1;
+        collision.gameObject.SetActive(false);
+        coin--;
+        if(coin == 0)
+        {
+            SceneManager.LoadScene(0);
+        }
+
     }
 }

@@ -6,6 +6,7 @@ public class CameraMovement : MonoBehaviour
 {
     Transform playerTransform;
     public float offset;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,7 @@ public class CameraMovement : MonoBehaviour
 
         //offset of camera
         temp.x += offset;
+        
 
         //assigning changed temp value to original camera position to change the original cam position
         transform.position = temp;

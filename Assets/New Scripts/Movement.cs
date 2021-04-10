@@ -11,7 +11,12 @@ public class Movement : MonoBehaviour
     SpriteRenderer sprite;
     [SerializeField] private LayerMask FloorlayerMask;
     public float jumpVelocity;
-    public int coin = 10;
+    int coin;
+
+   
+
+  
+
     private void Awake()
     {
         {
@@ -19,6 +24,8 @@ public class Movement : MonoBehaviour
             anim = GetComponent<Animator>();
             boxCollider2D = GetComponent<BoxCollider2D>();
             sprite = GetComponent<SpriteRenderer>();
+            coin = GameObject.FindGameObjectsWithTag("Coin").Length;
+          
         }
     }
     private void Update()
@@ -93,12 +100,13 @@ public class Movement : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         ScoreTextScript.coinAmount += 1;
-        collision.gameObject.SetActive(false);
+        Destroy(collision.gameObject);
         coin--;
-        if(coin == 0)
+       if(coin == 0)
         {
             SceneManager.LoadScene(2);
         }
-
+    
     }
+
 }
